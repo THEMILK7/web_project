@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cours.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-W9zFyF4XCnpYzSMQDnWp9z9UM3Sk+ML8Scp5YpFe2+VvNQF3Rvh1UdH/iCH5bGQj4H0HVL4Ygj6D6+E4iZQFHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+        }
+        h1, h2 {
+            color: #0056b3;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .course-details {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .course-details p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .course-content {
+            margin-top: 30px;
+        }
+        .content-text {
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+        }
+        .pdf-illustration, .video-illustration {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .pdf-illustration img, .video-illustration img {
+            max-width: 75%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .video-icon {
+            color: #007bff;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .section-heading {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #0056b3;
+        }
+        .section-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .section-list li {
+            margin-bottom: 10px;
+        }
+        .section-list li a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .section-list li a:hover {
+            color: #0056b3;
+        }
+        .section-details {
+            margin-left: 20px;
+        }
+        .section-details p {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .section-details strong {
+            font-weight: 700;
+        }
+        .mark-as-read {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .mark-as-read button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .mark-as-read button:hover {
+            background-color: #0056b3;
+        }
+        .resource-link {
+            margin-top: 10px;
+            display: block;
+        }
+        .resource-link a {
+            color: #007bff;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+        .resource-link a:hover {
+            color: #0056b3;
+        }
+        .progress {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .progress .progress-bar {
+            height: 100%;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            width: {{ cours.progress }}%;
+            background-color: #007bff;
+            transition: width 0.6s ease;
+        }
+        .evaluation-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .evaluation-link a {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .evaluation-link a:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px;
+            }
+            .content-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>{{ cours.title }}</h1>
+    <div class="course-details">
+        <p><strong>Matériel:</strong> {{ cours.matiere }}</p>
+        <p><strong>Classe:</strong> {{ cours.classe }}</p>
+        <p><strong>Chapitre:</strong> {{ cours.chapitre }}</p>
+        <p><strong>Auteur:</strong> {{ cours.author}}</p>
+        <p><strong>quiz:</strong> {{ cours.quiz_id}}</p>
+        <p><strong>Date de création:</strong> {{ cours.create_on }}</p>
+    </div>
+    <div class="course-content">
+        <div class="content-text">
+            <p>{{ cours.content }}</p>
+        </div>
+        {% if cours.pdf %}
+        <div class="section-heading">Pdf</div>
+        <div class="section-details">
+            <div class="video-illustration">
+                <img src="{% static 'illustration/pdf.jpg' %}" alt="Illustration" />
+            </div>
+            <span class="video-icon"><i class="fas fa-file-pdf"></i></span>
+            <a href="{{ cours.pdf.url }}" target="_blank">Ouvrir le PDF</a>
+        </div>
+        {% endif %}
+        {% if cours.video %}
+        <div class="section-heading">Vidéo</div>
+        <div class="section-details">
+            <div class="video-illustration">
+                <img src="{% static 'illustration/video.jpg' %}" alt="Illustration" />
+            </div>
+            <span class="video-icon"><i class="fas fa-video"></i></span>
+            <a href="{{ cours.video.url }}" target="_blank">Regarder la vidéo</a>
+        </div>
+        {% endif %}
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ cours.progress }}%;">{{ cours.progress }}%</div>
+        </div>
+    </div>
+    <div class="mark-as-read">
+        <button onclick="markAsRead()">Marquer comme lu</button>
+    </div>
+    <div class="evaluation-link">
+        <a href="{% url 'quiz_view' cours.quiz_id %}" class="btn btn-primary">Accéder à l'évaluation</a>
+    </div>
+</div>
+</body>
+</html>

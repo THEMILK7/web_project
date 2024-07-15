@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classe: Nom de la Classe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-W9zFyF4XCnpYzSMQDnWp9z9UM3Sk+ML8Scp5YpFe2+VvNQF3Rvh1UdH/iCH5bGQj4H0HVL4Ygj6D6+E4iZQFHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .course {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            position: relative; /* Position relative pour permettre le positionnement absolu */
+        }
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .course-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        .course-details {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .course-meta {
+            font-size: 14px;
+        }
+        .course-meta i {
+            margin-right: 5px;
+        }
+        .course-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .course-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center;">Classe: {{ classe.name }}</h1>
+
+    <!-- Simulation de matières statiques -->
+    <div class="course">
+        <div class="course-title">Matière 1</div>
+        <div class="course-details">
+
+            <a class="course-link" href="#">Voir la Matière 1</a>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-title">Matière 2</div>
+        <div class="course-details">
+
+            <a class="course-link" href="#">Voir la Matière 2</a>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-title">Matière 3</div>
+        <div class="course-details">
+            <a class="course-link" href="#">Voir la Matière 3</a>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-title">Matière 4</div>
+        <div class="course-details">
+
+            <a class="course-link" href="#">Voir la Matière 4</a>
+        </div>
+    </div>
+
+    <!-- Bloc pour l'ajout dynamique de matières -->
+    <!-- Vous devez implémenter la logique backend pour récupérer et afficher dynamiquement les matières -->
+    <!-- Par exemple, une boucle Django pour générer les blocs de matières -->
+    <div id="dynamic-courses">
+        <!-- Ce bloc sera rempli dynamiquement -->
+        {% for matiere in matieres %}
+        <div class="course">
+            <div class="course-title">{{ matiere.name }}</div>
+            <div class="course-details">
+
+                <a class="course-link" href="{% url 'matiere_detail' matiere.id %}">Voir la Matière</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+</body>
+</html>

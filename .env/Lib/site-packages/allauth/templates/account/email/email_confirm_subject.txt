@@ -1,0 +1,6 @@
+Bonjour {{ user.username }},
+
+Veuillez confirmer votre adresse email en utilisant le code suivant : {{ code }}
+
+Cordialement,
+L'équipe de votre application

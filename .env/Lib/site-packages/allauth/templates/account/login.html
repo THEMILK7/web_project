@@ -1,0 +1,155 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block head_title %}
+{% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block content %}
+<style>
+        /* Styles spécifiques pour la page de connexion */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .entrance-box {
+            max-width: 400px;
+            padding: 30px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .entrance-box h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .textbox {
+            margin-bottom: 20px;
+        }
+
+        .textbox input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #555;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .textbox input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .secondary {
+            background-color: #6c757d;
+        }
+
+        .secondary:hover {
+            background-color: #545b62;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+<div class="container">
+    <div class="entrance-box">
+        <h1>{% trans "Sign In" %}</h1>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+        <p class="info">
+            {% blocktrans %}
+            If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.
+            {% endblocktrans %}
+        </p>
+
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <div class="textbox">
+                {{ form.login }}
+            </div>
+            <div class="textbox">
+                {{ form.password }}
+            </div>
+            {{ redirect_field }}
+            <button type="submit" class="btn">{% trans "Sign In" %}</button>
+        </form>
+
+        <div class="links">
+            <a href="{% url 'account_reset_password' %}">{% trans "Forgot password?" %}</a>
+            <span>|</span>
+            <a href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
+        </div>
+        {% endif %}
+
+        {% if LOGIN_BY_CODE_ENABLED %}
+        <hr>
+        <h2>
+            <a href="{% url 'request_login_code' %}" class="btn secondary">{% trans "Mail me a sign-in code" %}</a>
+        </h2>
+        {% endif %}
+    </div>
+</div>
+
+{% if SOCIALACCOUNT_ENABLED %}
+{% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+{% endif %}
+{% endblock content %}

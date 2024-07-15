@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Liste des Evaluation</h1>
+{% for quiz in quizzes %}
+<li>
+    <strong></strong> {{ quiz.name }}<br>
+    <strong>ID :</strong> {{ quiz.pk }}<br>
+    <strong>Thème :</strong> {{ quiz.topic }}<br>
+    <strong>Nombre de Questions :</strong> {{ quiz.number_of_questions }}<br>
+    <strong>Durée:</strong> {{ quiz.time }} minutes<br>
+</li>
+{% endfor %}
+{% endblock content %}

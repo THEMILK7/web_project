@@ -1,0 +1,26 @@
+{
+    "response_code": "00",
+    "token": "",
+    "response_text": "",
+    "description": "",
+    "custom_data": [
+        {
+            "keyof_customdata": "transaction_id",
+            "valueof_customdata": "LGD20240715184741.C7099"
+        },
+        {
+            "keyof_customdata": "subscription_id",
+            "valueof_customdata": "5"
+        }
+    ],
+    "status": "completed",
+    "operator_id": "11",
+    "operator_name": "ORANGE BURKINA",
+    "customer": "22657094509",
+    "wiki": "https://client.ligdicash.com/wiki/confirmInvoice",
+    "montant": "100",
+    "amount": "100",
+    "date": "2024-07-15 18:47:44+00",
+    "external_id": "LGD20240715184741.C7099 ; 5",
+    "request_id": "P2505504702024"
+}

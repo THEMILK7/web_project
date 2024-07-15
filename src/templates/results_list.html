@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des résultats</title>
+    <style>
+        .result-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;  /* Ajustez selon vos besoins de mise en page */
+            margin-top: 20px;
+        }
+        .result-card {
+            width: 30%;  /* Ajustez la largeur des cartes de résultat selon vos besoins */
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .high-score {
+            background-color: #c8e6c9;  /* Vert clair pour un score élevé */
+        }
+        .medium-score {
+            background-color: #ffecb3;  /* Jaune clair pour un score moyen */
+        }
+        .low-score {
+            background-color: #ffcdd2;  /* Rouge clair pour un score faible */
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des résultats</h1>
+    <div class="result-container">
+        {% for quiz_name, results in grouped_results.items %}
+            <div class="result-card">
+                <h2>{{ quiz_name }}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Utilisateur</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr class="{% if result.score >= 80 %}high-score{% elif result.score >= 60 %}medium-score{% else %}low-score{% endif %}">
+                                <td>{{ result.user.username }}</td>
+                                <td>{{ result.score }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
