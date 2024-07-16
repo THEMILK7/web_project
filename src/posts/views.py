@@ -142,4 +142,5 @@ def courses(request):
 
 # Ajoutez d'autres vues ici si nécessaire
 
-
+def about_us(request):
+    return render(request, 'about_us/about_us.html')

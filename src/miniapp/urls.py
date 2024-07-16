@@ -21,7 +21,7 @@ from users.views import ProfLoginView
 #from django.urls import include
 from django.urls import path, include
 from django.urls import path
-from posts.views import prof_dashboard, add_course, delete_course
+from posts.views import prof_dashboard, add_course, delete_course,about_us
 from posts import views
 from quizes.views import add_quiz
 from questions.views import add_question,add_answer
@@ -54,7 +54,8 @@ urlpatterns = [
     path('payment_failed/', payment_failed, name='payment_failed'),
     path('subscription_success/', subscription_success, name='subscription_success'),
     path('subscription_success1/', subscription_success1, name='subscription_success1'),
-    path('', views.home, name='home'),  # Ajout de la vue d'accueil
+    path('', views.home, name='home'),
+    path('about_us/', about_us, name='about_us'),# Ajout de la vue d'accueil
     path('courses/', views.courses, name='courses'),
     path('select_course/', select_course, name='select_course'),# Ajout de la vue d'accueil
     path('',include("quizes.urls")),
